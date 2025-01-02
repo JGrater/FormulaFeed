@@ -16,11 +16,11 @@ struct FlagImage: View {
             .clipShape(RoundedRectangle(cornerRadius: 5))
             .overlay {
                 RoundedRectangle(cornerRadius: 5)
-                    .stroke(.white, lineWidth: 4)
+                    .stroke(.white, lineWidth: 3)
             }
     }
 }
 
 #Preview {
-    FlagImage(image: Image("unionJack"))
+    FlagImage(image: Image("britain"))
 }

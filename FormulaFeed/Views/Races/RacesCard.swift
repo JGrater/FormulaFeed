@@ -8,39 +8,57 @@
 import SwiftUI
 
 struct RacesCard: View {
+        
+    let race: Race
     
     let driverResults: [DriverResult] = [
-            DriverResult(position: 1, name: "Max Verstappen", team: "Redbull Racing", lapTime: "1:32.321"),
-            DriverResult(position: 2, name: "Lewis Hamilton", team: "Mercedes", lapTime: "1:32.567"),
+            DriverResult(position: 1, name: "Lewis Hamilton", team: "Mercedes", lapTime: "1:32.567"),
+            DriverResult(position: 2, name: "Max Verstappen", team: "Redbull Racing", lapTime: "1:32.321"),
             DriverResult(position: 3, name: "Lando Norris", team: "McLaren", lapTime: "1:33.120"),
-            DriverResult(position: 4, name: "Charles Leclerc", team: "Ferrari", lapTime: "1:33.450"),
-            DriverResult(position: 5, name: "Fernando Alonso", team: "Aston Martin", lapTime: "1:33.671")
+            DriverResult(position: 4, name: "Oscar Piastri", team: "Mclaren", lapTime: "1:33.128"),
+            DriverResult(position: 5, name: "Carlos Sainz Jr.", team: "Ferrari", lapTime: "1:33.128"),
+            DriverResult(position: 6, name: "Nico Hulkenburg", team: "Haas", lapTime: "1:33.128"),
+            DriverResult(position: 7, name: "Lance Stroll", team: "Aston Martin", lapTime: "1:33.128"),
+            DriverResult(position: 8, name: "Fernando Alonso", team: "Aston Martin", lapTime: "1:33.671"),
+            DriverResult(position: 9, name: "Alex Albon", team: "Williams", lapTime: "1:33.128"),
+            DriverResult(position: 10, name: "Yuki Tsunoda", team: "Racing Bulls", lapTime: "1:33.128"),
+            DriverResult(position: 11, name: "Logan Sargeant", team: "Williams", lapTime: "1:33.128"),
+            DriverResult(position: 12, name: "Kevin Magnussen", team: "Haas", lapTime: "1:33.128"),
+            DriverResult(position: 13, name: "Daniel Riccardo", team: "Racing Bulls", lapTime: "1:33.128"),
+            DriverResult(position: 14, name: "Charles Leclerc", team: "Ferrari", lapTime: "1:33.450"),
+            DriverResult(position: 15, name: "Valteri Bottas", team: "Kick Sauber", lapTime: "1:33.128"),
+            DriverResult(position: 16, name: "Esteban Ocon", team: "Alpine", lapTime: "1:33.128"),
+            DriverResult(position: 17, name: "Sergio Perez", team: "Redbull Racing", lapTime: "1:33.128"),
+            DriverResult(position: 18, name: "Zhou Guanyu", team: "Kick Sauber", lapTime: "1:33.128"),
+            DriverResult(position: 19, name: "George Russell", team: "Mercedes", lapTime: "DNF"),
+            DriverResult(position: 20, name: "Pierre Gasly", team: "Alpine", lapTime: "DNF")
+            
         ]
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
-                .fill(Color(red: 230 / 255, green: 140 / 255, blue: 150 / 255))
+                .fill(race.countryAccentColour)
             
             VStack(spacing: 0) {
                 ZStack {
                     Rectangle()
-                        .fill(Color(red: 207 / 255, green: 16 / 255, blue: 41 / 255))
+                        .fill(race.countryColour)
                         .frame(height: 120)
                         .cornerRadius(25)
                         .offset(y: -15)
                     
                     HStack {
-                        FlagImage(image: Image("britishFlag"))
+                        FlagImage(image: race.flag)
                             .frame(width: 100, height: 40)
                         VStack(alignment: .leading) {
-                            Text("British Grand Prix")
+                            Text(race.name)
                                 .font(.headline)
                                 .bold()
-                            Text("Silverstone Circuit")
+                            Text(race.circuit)
                                 .font(.subheadline)
                             
-                            Text("Sun 7th July, 15:00")
+                            Text(race.date)
                                 .font(.caption)
                                 .padding(.top, 5)
                         }
@@ -65,7 +83,7 @@ struct RacesCard: View {
                             .padding(.bottom)
                             .foregroundStyle(.black)
                             .font(.subheadline)
-                            .background(Color(red: 230 / 255, green: 140 / 255, blue: 150 / 255))
+                            .background(race.countryAccentColour)
                         ) {
                             ForEach(driverResults) { result in
                                 DriverResultRow(result: result)
@@ -87,5 +105,5 @@ struct RacesCard: View {
 }
 
 #Preview {
-    RacesCard()
+    RacesCard(race: Race(name: "British Grand Prix", date: "Sun 7th July, 15:00", circuit: "Silverstone Circuit", flag: Image("britain"), countryColour: Color(red: 9 / 255, green: 32 / 255, blue: 96 / 255), countryAccentColour: Color(red: 130 / 255, green: 30 / 255, blue: 55 / 255).opacity(0.5)))
 }
