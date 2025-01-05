@@ -41,32 +41,36 @@ struct RacesCard: View {
                 .fill(race.countryAccentColour)
             
             VStack(spacing: 0) {
-                ZStack {
-                    Rectangle()
-                        .fill(race.countryColour)
-                        .frame(height: 120)
-                        .cornerRadius(25)
-                        .offset(y: -15)
-                    
-                    HStack {
-                        FlagImage(image: race.flag)
-                            .frame(width: 100, height: 40)
-                        VStack(alignment: .leading) {
-                            Text(race.name)
-                                .font(.headline)
-                                .bold()
-                            Text(race.circuit)
-                                .font(.subheadline)
-                            
-                            Text(race.date)
-                                .font(.caption)
-                                .padding(.top, 5)
+                NavigationLink {
+                    RaceDetail(race: race)
+                } label: {
+                    ZStack {
+                        Rectangle()
+                            .fill(race.countryColour)
+                            .frame(height: 120)
+                            .cornerRadius(25)
+                            .offset(y: -15)
+                        
+                        HStack {
+                            FlagImage(image: race.flag)
+                                .frame(width: 100, height: 40)
+                            VStack(alignment: .leading) {
+                                Text(race.name)
+                                    .font(.headline)
+                                    .bold()
+                                Text(race.circuit)
+                                    .font(.caption)
+                                
+                                Text(race.date)
+                                    .font(.caption)
+                                    .padding(.top, 5)
+                            }
+                            .foregroundStyle(.white)
+                            Spacer()
                         }
-                        .foregroundStyle(.white)
-                        Spacer()
+                        .offset(y: -15)
+                        .padding(.horizontal, 10)
                     }
-                    .offset(y: -15)
-                    .padding(.horizontal, 10)
                 }
                 
                 ScrollView {
