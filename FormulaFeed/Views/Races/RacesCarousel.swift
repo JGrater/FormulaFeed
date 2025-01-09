@@ -42,7 +42,19 @@ struct RacesCarousel: View {
 
 #Preview {
     let previewRaces: [Race] = [
-        Race(name: "British Grand Prix", date: "Sun 7th July, 15:00", circuit: "Silverstone Circuit", flag: Image("britain"), countryColour: Color(red: 207 / 255, green: 16 / 255, blue: 41 / 255), countryAccentColour: Color(red: 230 / 255, green: 140 / 255, blue: 150 / 255))
+        Race(
+            name: "British Grand Prix",
+            date: "Sun 7th July, 15:00",
+            circuit: Circuit(
+                name: "Silverstone Circuit",
+                map: Image("silverstone"),
+                country: "United Kingdom",
+                countryFlag: Image("britain"),
+                location: ""
+            ),
+            colour: Color(red: 9 / 255, green: 32 / 255, blue: 96 / 255),
+            accentColour: Color(red: 130 / 255, green: 30 / 255, blue: 55 / 255).opacity(0.5)
+        )
     ]
     
     RacesCarousel(races: previewRaces)

@@ -12,9 +12,8 @@ struct Race {
     let id = UUID()
     let name: String
     let date: String
-    let circuit: String
-    let flag: Image
-    let countryColour: Color
-    let countryAccentColour: Color
+    let circuit: Circuit
+    let colour: Color
+    let accentColour: Color
     
 }

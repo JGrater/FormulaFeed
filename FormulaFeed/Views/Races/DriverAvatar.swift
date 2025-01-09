@@ -16,7 +16,7 @@ struct DriverAvatar: View {
             .clipShape(Circle())
             .overlay {
                 Circle()
-                    .stroke(.black, lineWidth: 3)
+                    .stroke(Color(white: 0.75), lineWidth: 3)
             }
     }
 }

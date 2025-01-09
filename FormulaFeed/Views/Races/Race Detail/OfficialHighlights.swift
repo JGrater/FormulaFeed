@@ -23,7 +23,9 @@ struct OfficialHighlights: View {
                 ProgressView()
             }
             .clipShape(RoundedRectangle(cornerRadius: 10))
-            .shadow(radius: 5)
+            .shadow(color: .black.opacity(0.2), radius: 5, x: 0, y: 2)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal)
             
             VStack(alignment: .leading) {
                 Text("Official Highlights")
@@ -47,7 +49,7 @@ struct OfficialHighlights: View {
         .onTapGesture {
             openYoutube(videoID: videoID)
         }
-        .padding()
+        
     }
     
     private func openYoutube(videoID: String) {

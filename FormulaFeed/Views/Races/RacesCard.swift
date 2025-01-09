@@ -38,7 +38,7 @@ struct RacesCard: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
-                .fill(race.countryAccentColour)
+                .fill(race.accentColour)
             
             VStack(spacing: 0) {
                 NavigationLink {
@@ -46,19 +46,19 @@ struct RacesCard: View {
                 } label: {
                     ZStack {
                         Rectangle()
-                            .fill(race.countryColour)
+                            .fill(race.colour)
                             .frame(height: 120)
                             .cornerRadius(25)
                             .offset(y: -15)
                         
                         HStack {
-                            FlagImage(image: race.flag)
+                            FlagImage(image: race.circuit.countryFlag)
                                 .frame(width: 100, height: 40)
                             VStack(alignment: .leading) {
                                 Text(race.name)
                                     .font(.headline)
                                     .bold()
-                                Text(race.circuit)
+                                Text(race.circuit.name)
                                     .font(.caption)
                                 
                                 Text(race.date)
@@ -87,7 +87,7 @@ struct RacesCard: View {
                             .padding(.bottom)
                             .foregroundStyle(.black)
                             .font(.subheadline)
-                            .background(race.countryAccentColour)
+                            .background(race.accentColour)
                         ) {
                             ForEach(driverResults) { result in
                                 DriverResultRow(result: result)
@@ -109,5 +109,17 @@ struct RacesCard: View {
 }
 
 #Preview {
-    RacesCard(race: Race(name: "British Grand Prix", date: "Sun 7th July, 15:00", circuit: "Silverstone Circuit", flag: Image("britain"), countryColour: Color(red: 9 / 255, green: 32 / 255, blue: 96 / 255), countryAccentColour: Color(red: 130 / 255, green: 30 / 255, blue: 55 / 255).opacity(0.5)))
+    RacesCard(race: Race(
+        name: "British Grand Prix",
+        date: "Sun 7th July, 15:00",
+        circuit: Circuit(
+            name: "Silverstone Circuit",
+            map: Image("silverstone"),
+            country: "United Kingdom",
+            countryFlag: Image("britain"),
+            location: ""
+        ),
+        colour: Color(red: 9 / 255, green: 32 / 255, blue: 96 / 255),
+        accentColour: Color(red: 130 / 255, green: 30 / 255, blue: 55 / 255).opacity(0.5)
+    ))
 }

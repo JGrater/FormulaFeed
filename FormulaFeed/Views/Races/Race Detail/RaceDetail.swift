@@ -13,17 +13,42 @@ struct RaceDetail: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                RaceInfoBox(race: race)
-                    .padding(.bottom, 5)
-                
-                DriverOfTheDay(driver: Driver(name: "Max Verstappen",
-                    team: Team(name: "Redbull Racing", country: "Austrian"),
-                    nationality: "Dutch", number: 1))
                 
                 OfficialHighlights(
                     videoID: "yPvoKz6tyJs",
                     thumbnailURL: "https://img.youtube.com/vi/yPvoKz6tyJs/maxresdefault.jpg"
                 )
+                .padding(.bottom, 5)
+                
+                RaceInfoBox(race: race)
+                    .padding(.bottom, 5)
+
+                DriverOfTheDay(driver: Driver(
+                    name: "Max Verstappen",
+                    team: Team(name: "Redbull Racing", country: "Austrian"),
+                    nationality: "Dutch",
+                    number: 1
+                ))
+                .padding(.bottom, 5)
+
+                FastestLap(driver: Driver(
+                    name: "Max Verstappen",
+                    team: Team(name: "Redbull Racing", country: "Austrian"),
+                    nationality: "Dutch",
+                    number: 1
+                ))
+                .padding(.bottom, 5)
+                
+                FastestPitstop(driver: Driver(
+                    name: "Max Verstappen",
+                    team: Team(name: "Redbull Racing", country: "Austrian"),
+                    nationality: "Dutch",
+                    number: 1
+                ))
+                .padding(.bottom, 5)
+                
+                RaceCircuit(circuit: race.circuit)
+                
             }
             .background(Color(white: 0.95))
             .navigationTitle(race.name)
@@ -43,5 +68,17 @@ struct RaceDetail: View {
 }
 
 #Preview {
-    RaceDetail(race: Race(name: "British Grand Prix", date: "Sun 7th July, 15:00", circuit: "Silverstone Circuit", flag: Image("britain"), countryColour: Color(red: 207 / 255, green: 16 / 255, blue: 41 / 255), countryAccentColour: Color(red: 230 / 255, green: 140 / 255, blue: 150 / 255)))
+    RaceDetail(race: Race(
+        name: "British Grand Prix",
+        date: "Sun 7th July, 15:00",
+        circuit: Circuit(
+            name: "Silverstone Circuit",
+            map: Image("silverstone"),
+            country: "United Kingdom",
+            countryFlag: Image("britain"),
+            location: "Northamptonshire"
+        ),
+        colour: Color(red: 9 / 255, green: 32 / 255, blue: 96 / 255),
+        accentColour: Color(red: 130 / 255, green: 30 / 255, blue: 55 / 255).opacity(0.5)
+    ))
 }
