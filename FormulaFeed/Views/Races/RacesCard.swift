@@ -36,75 +36,63 @@ struct RacesCard: View {
         ]
     
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 25)
-                .fill(race.accentColour)
+        VStack(alignment: .leading, spacing: 0) {
             
-            VStack(spacing: 0) {
-                NavigationLink {
-                    RaceDetail(race: race)
-                } label: {
-                    ZStack {
-                        Rectangle()
-                            .fill(race.colour)
-                            .frame(height: 120)
-                            .cornerRadius(25)
-                            .offset(y: -15)
-                        
-                        HStack {
-                            FlagImage(image: race.circuit.countryFlag)
-                                .frame(width: 100, height: 40)
-                            VStack(alignment: .leading) {
-                                Text(race.name)
-                                    .font(.headline)
-                                    .bold()
-                                Text(race.circuit.name)
-                                    .font(.caption)
-                                
-                                Text(race.date)
-                                    .font(.caption)
-                                    .padding(.top, 5)
-                            }
-                            .foregroundStyle(.white)
-                            Spacer()
-                        }
-                        .offset(y: -15)
-                        .padding(.horizontal, 10)
-                    }
+            HStack(spacing: 24) {
+                FlagImage(image: race.circuit.countryFlag)
+                    .frame(width: 80, height: 30)
+                    
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(race.name)
+                        .font(.headline)
+                        .bold()
+                    Text(race.circuit.name)
+                        .font(.caption)
+                    Text(race.date)
+                        .font(.caption)
+                        .padding(.top, 5)
                 }
-                
-                ScrollView {
-                    LazyVStack(alignment: .leading, spacing: 0, pinnedViews: [.sectionHeaders]) {
-                        Section(header:
-                            HStack {
-                                Text("Pos")
-                                    .frame(width: 30, alignment: .center)
-                                Text("Driver")
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                Text("Lap Time")
-                                    .frame(width: 80, alignment: .trailing)
-                            }
-                            .padding(.bottom)
-                            .foregroundStyle(.black)
-                            .font(.subheadline)
-                            .background(race.accentColour)
-                        ) {
-                            ForEach(driverResults) { result in
-                                DriverResultRow(result: result)
-                                    .listRowBackground(Color.clear)
-                                    .padding(.bottom)
-                                Divider()
-                            }
-                        }
-                    }
-                    .padding(.horizontal)
-                }
-                .frame(height: 350)
-                .scrollContentBackground(.hidden)
+                .frame(maxWidth: .infinity, alignment: .topLeading)
+                .foregroundStyle(.white)
             }
+            .padding(12)
+            .padding(.horizontal, 20)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(height: 128, alignment: .leading)
+            .background(race.colour)
+            .clipShape(.rect(topLeadingRadius: 25, topTrailingRadius: 25, style: .circular))
+            
+            HStack(alignment: .center) {
+                Text("Pos")
+                    .frame(width: 30, alignment: .center)
+                Text("Driver")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text("Lap Time")
+                    .frame(width: 80, alignment: .trailing)
+            }
+            .padding()
+            .foregroundStyle(.black)
+            .font(.subheadline)
+            .shadow(radius: 5)
+                    
+            
+            ScrollView(.vertical) {
+            
+                VStack(alignment: .leading, spacing: 0) {
+                    ForEach(driverResults) { result in
+                        DriverResultRow(result: result)
+                            .padding(.bottom)
+                        Divider()
+                    }
+                }
+                .padding(.horizontal)
+            }
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+            .clipped()
         }
-        .frame(width: 300, height: 500) // Fixed card size
-        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .frame(width: 320, height: 550, alignment: .topLeading)
+        .background(race.accentColour)
+        .clipShape(.rect(cornerRadius: 25, style: .circular))
     }
 }
 

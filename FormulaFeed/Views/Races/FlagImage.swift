@@ -12,7 +12,7 @@ struct FlagImage: View {
     var body: some View {
         image
             .resizable()
-            .scaledToFit()
+            .aspectRatio(contentMode: .fill)
             .clipShape(RoundedRectangle(cornerRadius: 5))
             .overlay {
                 RoundedRectangle(cornerRadius: 5)
