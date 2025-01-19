@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Driver {
     let id = UUID()
@@ -13,4 +14,5 @@ struct Driver {
     let team: Team
     let nationality: String
     let number: Int
+    let photo: Image
 }

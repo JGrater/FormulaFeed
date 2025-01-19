@@ -10,7 +10,6 @@ import Foundation
 struct DriverResult: Identifiable {
     let id = UUID()
     let position: Int
-    let name: String
-    let team: String
+    let driver: Driver
     let lapTime: String
 }

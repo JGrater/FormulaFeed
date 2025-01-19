@@ -56,7 +56,11 @@ struct DriverOfTheDay: View {
 }
 
 #Preview {
-    DriverOfTheDay(driver: Driver(name: "Max Verstappen",
-                                      team: Team(name: "Redbull Racing", country: "Austrian"),
-                                      nationality: "Dutch", number: 1))
+    DriverOfTheDay(driver: Driver(
+        name: "Max Verstappen",
+        team: Team(name: "Redbull Racing", country: "Austrian", logo: Image("redbull")),
+        nationality: "Dutch",
+        number: 1,
+        photo: Image("verstappen")
+    ))
 }

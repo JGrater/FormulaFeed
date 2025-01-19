@@ -57,9 +57,10 @@ struct FastestPitstop: View {
     FastestPitstop(
         driver: Driver(
             name: "Max Verstappen",
-            team: Team(name: "Redbull Racing", country: "Austrian"),
+            team: Team(name: "Redbull Racing", country: "Austrian", logo: Image("redbull")),
             nationality: "Dutch",
-            number: 1
-         )
+            number: 1,
+            photo: Image("verstappen")
+        )
     )
 }

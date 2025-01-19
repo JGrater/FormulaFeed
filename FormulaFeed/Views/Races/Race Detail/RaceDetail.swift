@@ -9,60 +9,63 @@ import SwiftUI
 
 struct RaceDetail: View {
     let race: Race
+    @State private var scrollOffset: CGFloat = 0
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                
+            RaceDetailHeader(scrollOffset: $scrollOffset)
+            
+            ScrollView(showsIndicators: false) {
                 OfficialHighlights(
                     videoID: "yPvoKz6tyJs",
                     thumbnailURL: "https://img.youtube.com/vi/yPvoKz6tyJs/maxresdefault.jpg"
                 )
-                .padding(.bottom, 5)
-                
+                .padding(.vertical, 5)
+                    
                 RaceInfoBox(race: race)
                     .padding(.bottom, 5)
-
+                    
                 DriverOfTheDay(driver: Driver(
                     name: "Max Verstappen",
-                    team: Team(name: "Redbull Racing", country: "Austrian"),
+                    team: Team(name: "Redbull Racing", country: "Austrian", logo: Image("redbull")),
                     nationality: "Dutch",
-                    number: 1
+                    number: 1,
+                    photo: Image("verstappen")
                 ))
                 .padding(.bottom, 5)
-
+                    
                 FastestLap(driver: Driver(
                     name: "Max Verstappen",
-                    team: Team(name: "Redbull Racing", country: "Austrian"),
+                    team: Team(name: "Redbull Racing", country: "Austrian", logo: Image("redbull")),
                     nationality: "Dutch",
-                    number: 1
+                    number: 1,
+                    photo: Image("verstappen")
                 ))
                 .padding(.bottom, 5)
-                
+                    
                 FastestPitstop(driver: Driver(
                     name: "Max Verstappen",
-                    team: Team(name: "Redbull Racing", country: "Austrian"),
+                    team: Team(name: "Redbull Racing", country: "Austrian", logo: Image("redbull")),
                     nationality: "Dutch",
-                    number: 1
+                    number: 1,
+                    photo: Image("verstappen")
                 ))
                 .padding(.bottom, 5)
-                
+                    
                 RaceCircuit(circuit: race.circuit)
-                
             }
-            .background(Color(white: 0.95))
-            .navigationTitle(race.name)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                Button("share", systemImage: "square.and.arrow.up") {
-                    
+            .coordinateSpace(name: "scroll")
+            .onScrollGeometryChange(for: CGFloat.self, of: { geometry in
+                return geometry.contentOffset.y
+            }, action: { old, new in
+                print(new)
+                withAnimation(.spring(response: 0.6, dampingFraction: 1, blendDuration: 0)) {
+                    if (new >= 0) {
+                        scrollOffset = new
+                    }
                 }
-                .buttonStyle(.plain)
-                Button("favourite", systemImage: "star") {
-                    
-                }
-                .buttonStyle(.plain)
-            }
+            })
+            .safeAreaPadding(.bottom, 10)
         }
     }
 }

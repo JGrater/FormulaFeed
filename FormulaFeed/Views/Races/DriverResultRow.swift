@@ -17,9 +17,9 @@ struct DriverResultRow: View {
                 .bold()
                     
             ZStack(alignment: .topLeading) {
-                Text(result.name)
+                Text(result.driver.name)
                     .font(.subheadline)// Driver name
-                Text(result.team)
+                Text(result.driver.team.name)
                     .font(.caption)
                     .opacity(0.7)
                     .offset(y: 16)
@@ -35,5 +35,15 @@ struct DriverResultRow: View {
 }
 
 #Preview {
-    DriverResultRow(result: DriverResult(position: 1, name: "Max Verstappen", team: "Redbull Racing", lapTime: "1:55.0"))
+    DriverResultRow(result: DriverResult(
+        position: 1,
+        driver: Driver(
+            name: "Max Verstappen",
+            team: Team(name: "Redbull Racing", country: "Austrian", logo: Image("redbull")),
+            nationality: "Dutch",
+            number: 1,
+            photo: Image("verstappen")
+        ),
+        lapTime: "1:55.0"
+    ))
 }

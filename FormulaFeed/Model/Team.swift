@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Team {
     let id = UUID()
     let name: String
     let country: String
+    let logo: Image
 }

@@ -12,27 +12,51 @@ struct RacesCard: View {
     let race: Race
     
     let driverResults: [DriverResult] = [
-            DriverResult(position: 1, name: "Lewis Hamilton", team: "Mercedes", lapTime: "1:32.567"),
-            DriverResult(position: 2, name: "Max Verstappen", team: "Redbull Racing", lapTime: "1:32.321"),
-            DriverResult(position: 3, name: "Lando Norris", team: "McLaren", lapTime: "1:33.120"),
-            DriverResult(position: 4, name: "Oscar Piastri", team: "Mclaren", lapTime: "1:33.128"),
-            DriverResult(position: 5, name: "Carlos Sainz Jr.", team: "Ferrari", lapTime: "1:33.128"),
-            DriverResult(position: 6, name: "Nico Hulkenburg", team: "Haas", lapTime: "1:33.128"),
-            DriverResult(position: 7, name: "Lance Stroll", team: "Aston Martin", lapTime: "1:33.128"),
-            DriverResult(position: 8, name: "Fernando Alonso", team: "Aston Martin", lapTime: "1:33.671"),
-            DriverResult(position: 9, name: "Alex Albon", team: "Williams", lapTime: "1:33.128"),
-            DriverResult(position: 10, name: "Yuki Tsunoda", team: "Racing Bulls", lapTime: "1:33.128"),
-            DriverResult(position: 11, name: "Logan Sargeant", team: "Williams", lapTime: "1:33.128"),
-            DriverResult(position: 12, name: "Kevin Magnussen", team: "Haas", lapTime: "1:33.128"),
-            DriverResult(position: 13, name: "Daniel Riccardo", team: "Racing Bulls", lapTime: "1:33.128"),
-            DriverResult(position: 14, name: "Charles Leclerc", team: "Ferrari", lapTime: "1:33.450"),
-            DriverResult(position: 15, name: "Valteri Bottas", team: "Kick Sauber", lapTime: "1:33.128"),
-            DriverResult(position: 16, name: "Esteban Ocon", team: "Alpine", lapTime: "1:33.128"),
-            DriverResult(position: 17, name: "Sergio Perez", team: "Redbull Racing", lapTime: "1:33.128"),
-            DriverResult(position: 18, name: "Zhou Guanyu", team: "Kick Sauber", lapTime: "1:33.128"),
-            DriverResult(position: 19, name: "George Russell", team: "Mercedes", lapTime: "DNF"),
-            DriverResult(position: 20, name: "Pierre Gasly", team: "Alpine", lapTime: "DNF")
-            
+            DriverResult(
+                position: 1, driver: Driver(
+                    name: "Lewis Hamilton",
+                    team: Team(name: "Mercedes", country: "German", logo: Image("mercedes")),
+                    nationality: "British",
+                    number: 44,
+                    photo: Image("hamilton")
+                ), lapTime: "1:32.567"
+            ),
+            DriverResult(
+                position: 2, driver: Driver(
+                    name: "Max Verstappen",
+                    team: Team(name: "Redbull Racing", country: "Austrian", logo: Image("redbull")),
+                    nationality: "Dutch",
+                    number: 1,
+                    photo: Image("verstappen")
+                ), lapTime: "1:32.321"
+            ),
+            DriverResult(
+                position: 3, driver: Driver(
+                    name: "Lando Norris",
+                    team: Team(name: "Mclaren", country: "British", logo: Image("redbull")),
+                    nationality: "Dutch",
+                    number: 15,
+                    photo: Image("verstappen")
+                ), lapTime: "1:33.120"
+            ),
+            DriverResult(
+                position: 4, driver: Driver(
+                    name: "Oscar Piastri",
+                    team: Team(name: "Mclaren", country: "Austrian", logo: Image("redbull")),
+                    nationality: "Australian",
+                    number: 69,
+                    photo: Image("verstappen")
+                ), lapTime: "1:33.128"
+            ),
+            DriverResult(
+                position: 5, driver: Driver(
+                    name: "Carlos Sainz Jr.",
+                    team: Team(name: "Ferrari", country: "Italian", logo: Image("ferrari")),
+                    nationality: "Spanish",
+                    number: 14,
+                    photo: Image("leclerc")
+                ), lapTime: "1:33.128"
+            )
         ]
     
     var body: some View {

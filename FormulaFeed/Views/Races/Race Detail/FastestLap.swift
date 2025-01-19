@@ -57,11 +57,12 @@ struct FastestLap: View {
 
 #Preview {
     FastestLap(driver:
-        Driver(
-            name: "Max Verstappen",
-            team: Team(name: "Redbull Racing", country: "Austrian"),
-            nationality: "Dutch",
-            number: 1
-        )
+                Driver(
+                    name: "Max Verstappen",
+                    team: Team(name: "Redbull Racing", country: "Austrian", logo: Image("redbull")),
+                    nationality: "Dutch",
+                    number: 1,
+                    photo: Image("verstappen")
+                )
     )
 }
