@@ -70,7 +70,7 @@ struct RacesHome: View {
             name: "Chinese Grand Prix",
             date: "Sun 21st Apr, 08:00",
             circuit: Circuit(
-                name: "Shaghai International Circuit",
+                name: "Shanghai International Circuit",
                 map: Image("silverstone"),
                 country: "China",
                 countryFlag: Image("china"),

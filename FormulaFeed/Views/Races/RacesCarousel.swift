@@ -12,7 +12,7 @@ struct RacesCarousel: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 0) {
                     ForEach(0..<races.count, id: \.self) { index in
@@ -38,7 +38,14 @@ struct RacesCarousel: View {
             .contentMargins(60, for: .scrollContent)
             .scrollTargetBehavior(.viewAligned)
         }
-        
+        .navigationViewStyle(StackNavigationViewStyle())
+    }
+}
+
+extension UINavigationController {
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        interactivePopGestureRecognizer?.delegate = nil
     }
 }
 

@@ -9,12 +9,12 @@ import SwiftUI
 
 struct RaceDetailHeader: View {
     @Binding var scrollOffset: CGFloat
-    var dismiss: DismissAction
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         VStack(alignment: .center) {
             HStack(spacing:0) {
-                Button(action: { withAnimation { dismiss() }) {
+                Button(action: { withAnimation { presentationMode.wrappedValue.dismiss() } }) {
                     Image(systemName: "chevron.backward")
                 }
                 Spacer()
@@ -28,6 +28,8 @@ struct RaceDetailHeader: View {
             }
             .padding(20)
             .frame(maxWidth: .infinity, alignment: .center)
+            .foregroundStyle(.primary)
+            .font(.headline)
             
             Podium(podiumDrivers: [
                 Driver(
@@ -65,7 +67,5 @@ struct RaceDetailHeader: View {
 }
 
 #Preview {
-    @Previewable
-    @Environment(\.dismiss) var dismissAction
-    RaceDetailHeader(scrollOffset: .constant(400), dismiss: dismissAction)
+    RaceDetailHeader(scrollOffset: .constant(400))
 }

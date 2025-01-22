@@ -10,18 +10,9 @@ import SwiftUI
 struct RaceDetail: View {
     let race: Race
     @State private var scrollOffset: CGFloat = 0
-    @State private var dragOffset: CGFloat = 0
-    @GestureState private var dragState = DragState.inactive
-    @Environment(\.dismiss) private var dismissAction
-    
-    enum DragState {
-        case inactive
-        case dragging(translation: CGFloat)
-    }
     
     var body: some View {
-        NavigationStack {
-            RaceDetailHeader(scrollOffset: $scrollOffset, dismiss: dismissAction)
+        RaceDetailHeaderContainer(scrollOffset: $scrollOffset) {
             
             ScrollView(showsIndicators: false) {
                 OfficialHighlights(
@@ -75,24 +66,6 @@ struct RaceDetail: View {
             })
             .safeAreaPadding(.bottom, 10)
         }
-        .offset(x: self.dragOffset)
-        .gesture(
-            DragGesture()
-                .updating($dragState) { drag, state, transaction in
-                    state = .dragging(translation: drag.translation.width)
-                }
-                .onEnded({ value in
-                    if value.translation.width > 100 {
-                        withAnimation {
-                            self.dismissAction()
-                        }
-                    } else {
-                        withAnimation {
-                            self.dragOffset = 0
-                        }
-                    }
-                })
-        )
     }
 }
 
