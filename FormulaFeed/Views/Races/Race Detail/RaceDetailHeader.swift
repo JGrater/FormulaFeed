@@ -9,11 +9,12 @@ import SwiftUI
 
 struct RaceDetailHeader: View {
     @Binding var scrollOffset: CGFloat
+    var dismiss: DismissAction
     
     var body: some View {
         VStack(alignment: .center) {
             HStack(spacing:0) {
-                Button(action: { }) {
+                Button(action: { withAnimation { dismiss() }) {
                     Image(systemName: "chevron.backward")
                 }
                 Spacer()
@@ -21,7 +22,7 @@ struct RaceDetailHeader: View {
                     .bold()
                     .opacity(max(0, 1.0 - scrollOffset / 100.0))
                 Spacer()
-                Button(action: { }) {
+                Button(action: {  }) {
                     Image(systemName: "square.and.arrow.up")
                 }
             }
@@ -64,5 +65,7 @@ struct RaceDetailHeader: View {
 }
 
 #Preview {
-    RaceDetailHeader(scrollOffset: .constant(400))
+    @Previewable
+    @Environment(\.dismiss) var dismissAction
+    RaceDetailHeader(scrollOffset: .constant(400), dismiss: dismissAction)
 }

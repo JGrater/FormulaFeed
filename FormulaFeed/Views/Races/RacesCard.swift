@@ -56,6 +56,60 @@ struct RacesCard: View {
                     number: 14,
                     photo: Image("leclerc")
                 ), lapTime: "1:33.128"
+            ),
+            DriverResult(
+                position: 5, driver: Driver(
+                    name: "Carlos Sainz Jr.",
+                    team: Team(name: "Ferrari", country: "Italian", logo: Image("ferrari")),
+                    nationality: "Spanish",
+                    number: 14,
+                    photo: Image("leclerc")
+                ), lapTime: "1:33.128"
+            ),
+            DriverResult(
+                position: 5, driver: Driver(
+                    name: "Carlos Sainz Jr.",
+                    team: Team(name: "Ferrari", country: "Italian", logo: Image("ferrari")),
+                    nationality: "Spanish",
+                    number: 14,
+                    photo: Image("leclerc")
+                ), lapTime: "1:33.128"
+            ),
+            DriverResult(
+                position: 5, driver: Driver(
+                    name: "Carlos Sainz Jr.",
+                    team: Team(name: "Ferrari", country: "Italian", logo: Image("ferrari")),
+                    nationality: "Spanish",
+                    number: 14,
+                    photo: Image("leclerc")
+                ), lapTime: "1:33.128"
+            ),
+            DriverResult(
+                position: 5, driver: Driver(
+                    name: "Carlos Sainz Jr.",
+                    team: Team(name: "Ferrari", country: "Italian", logo: Image("ferrari")),
+                    nationality: "Spanish",
+                    number: 14,
+                    photo: Image("leclerc")
+                ), lapTime: "1:33.128"
+            ),
+            DriverResult(
+                position: 5, driver: Driver(
+                    name: "Carlos Sainz Jr.",
+                    team: Team(name: "Ferrari", country: "Italian", logo: Image("ferrari")),
+                    nationality: "Spanish",
+                    number: 14,
+                    photo: Image("leclerc")
+                ), lapTime: "1:33.128"
+            ),
+            DriverResult(
+                position: 5, driver: Driver(
+                    name: "Carlos Sainz Jr.",
+                    team: Team(name: "Ferrari", country: "Italian", logo: Image("ferrari")),
+                    nationality: "Spanish",
+                    number: 14,
+                    photo: Image("leclerc")
+                ), lapTime: "1:33.128"
             )
         ]
     
