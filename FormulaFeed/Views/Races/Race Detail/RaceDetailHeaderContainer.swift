@@ -17,18 +17,25 @@ struct RaceDetailHeaderContainer<Content: View>: View {
     }
     
     var body: some View {
-        RaceDetailHeader(scrollOffset: $scrollOffset)
-        content
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        VStack(spacing: 0) {
+            Color(.systemBackground).ignoresSafeArea(edges: .top)
+                .frame(height: 0)
+            RaceDetailHeader(scrollOffset: $scrollOffset)
+            content
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
     }
 }
 
 #Preview {
-    RaceDetailHeaderContainer(scrollOffset: .constant(0)) {
-        ZStack {
-            Color.blue.ignoresSafeArea()
-            Text("Hello, World!")
-                .foregroundStyle(.white)
+    ZStack {
+        Color.blue.ignoresSafeArea()
+        RaceDetailHeaderContainer(scrollOffset: .constant(0)) {
+            ZStack {
+                Text("Hello, World!")
+                    .foregroundStyle(.white)
+            }
         }
     }
+    
 }

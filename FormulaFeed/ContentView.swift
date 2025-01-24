@@ -18,6 +18,10 @@ struct ContentView: View {
         case settings
     }
     
+    init() {
+        UITabBar.appearance().backgroundColor = UIColor.systemBackground
+    }
+    
     var body: some View {
         TabView(selection: $selection) {
             Tab("News", systemImage: "newspaper.fill", value: TabNames.news) {

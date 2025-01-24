@@ -336,16 +336,9 @@ struct RacesHome: View {
     
     var body: some View {
         NavigationStack {
+            RacesHeader()
             VStack {
                 RacesCarousel(races: races)
-            }
-            .navigationTitle("Races")
-            .toolbar {
-                Button {
-                    
-                } label: {
-                    Label("Search", systemImage: "magnifyingglass")
-                }
             }
         }
     }

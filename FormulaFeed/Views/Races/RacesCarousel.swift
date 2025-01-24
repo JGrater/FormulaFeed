@@ -18,7 +18,7 @@ struct RacesCarousel: View {
                     ForEach(0..<races.count, id: \.self) { index in
                         NavigationLink(destination:
                             RaceDetail(race: races[index])
-                                .navigationBarBackButtonHidden()
+                                .navigationBarHidden(true)
                         ) {
                             RacesCard(race: races[index])
                         }
@@ -37,6 +37,7 @@ struct RacesCarousel: View {
             }
             .contentMargins(60, for: .scrollContent)
             .scrollTargetBehavior(.viewAligned)
+            .background(Color(.systemGroupedBackground))
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
