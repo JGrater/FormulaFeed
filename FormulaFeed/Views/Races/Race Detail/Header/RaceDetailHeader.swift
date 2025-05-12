@@ -61,8 +61,7 @@ struct RaceDetailHeader: View {
         .frame(maxWidth: .infinity, alignment: .top)
         .frame(height: max(120, 275 - scrollOffset), alignment: .top)
         .background(Color(.systemBackground).edgesIgnoringSafeArea(.top))
-        .clipShape(.rect(bottomLeadingRadius: 25, bottomTrailingRadius: 25, style: .circular))
-        .shadow(radius: 1, x: 0, y: 2)
+
     }
 }
 

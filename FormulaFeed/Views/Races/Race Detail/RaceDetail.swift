@@ -20,13 +20,24 @@ struct RaceDetail: View {
         RaceDetailTab(id: .stats) { RaceDetailStats() },
         RaceDetailTab(id: .news) { RaceDetailNews() }
     ]
+    @State private var selectedTab: RaceDetailTab.Tab = .info
+    @State private var tabBarScrollState: RaceDetailTab.Tab?
+    @State private var mainViewScrollState: RaceDetailTab.Tab?
+    @State private var progress: CGFloat = .zero
     
     var body: some View {
         ZStack {
             Color(.systemGroupedBackground)
                 .ignoresSafeArea()
             
-            RaceDetailHeaderContainer(scrollOffset: $scrollOffset) {
+            RaceDetailHeaderContainer(
+                scrollOffset: $scrollOffset,
+                tabs: $raceDetailTabs,
+                selectedTab: $selectedTab,
+                tabBarScrollState: $tabBarScrollState,
+                mainViewScrollState: $mainViewScrollState,
+                progress: $progress
+            ) {
                 
                 GeometryReader {
                     let size = $0.size
@@ -55,12 +66,21 @@ struct RaceDetail: View {
                             }
                         }
                         .scrollTargetLayout()
-                        // rect progress
+                        .rect { rect in
+                            progress = -rect.minX / size.width
+                        }
                     }
+                    .scrollPosition(id: $mainViewScrollState)
                     .scrollIndicators(.hidden)
                     .scrollTargetBehavior(.paging)
-                    // scrollPosition
-                    //onCHange
+                    .onChange(of: mainViewScrollState) { old, new in
+                        if let new {
+                            withAnimation(.snappy) {
+                                tabBarScrollState = new
+                                selectedTab = new
+                            }
+                        }
+                    }
                 }
             }
         }
