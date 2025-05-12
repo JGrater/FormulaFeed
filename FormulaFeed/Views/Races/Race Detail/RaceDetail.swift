@@ -10,6 +10,16 @@ import SwiftUI
 struct RaceDetail: View {
     let race: Race
     @State private var scrollOffset: CGFloat = 0
+    @State private var raceDetailTabs: [RaceDetailTab] = [
+        RaceDetailTab(id: .info) { RaceDetailInfo() },
+        RaceDetailTab(id: .report) { RaceDetailReport() },
+        RaceDetailTab(id: .race) { RaceDetailRace() },
+        RaceDetailTab(id: .grid) { RaceDetailGrid() },
+        RaceDetailTab(id: .qualifying) { RaceDetailQualifying() },
+        RaceDetailTab(id: .practice) { RaceDetailPractice() },
+        RaceDetailTab(id: .stats) { RaceDetailStats() },
+        RaceDetailTab(id: .news) { RaceDetailNews() }
+    ]
     
     var body: some View {
         ZStack {
@@ -18,59 +28,40 @@ struct RaceDetail: View {
             
             RaceDetailHeaderContainer(scrollOffset: $scrollOffset) {
                 
-                ScrollView(showsIndicators: false) {
-                    OfficialHighlights(
-                        videoID: "yPvoKz6tyJs",
-                        thumbnailURL: "https://img.youtube.com/vi/yPvoKz6tyJs/maxresdefault.jpg"
-                    )
-                    .padding(.top, 5)
-                    .padding(.vertical, 5)
+                GeometryReader {
+                    let size = $0.size
                     
-                    RaceInfoBox(race: race)
-                        .padding(.bottom, 5)
-                    
-                    DriverOfTheDay(driver: Driver(
-                        name: "Max Verstappen",
-                        team: Team(name: "Redbull Racing", country: "Austrian", logo: Image("redbull")),
-                        nationality: "Dutch",
-                        number: 1,
-                        photo: Image("verstappen")
-                    ))
-                    .padding(.bottom, 5)
-                    
-                    FastestLap(driver: Driver(
-                        name: "Max Verstappen",
-                        team: Team(name: "Redbull Racing", country: "Austrian", logo: Image("redbull")),
-                        nationality: "Dutch",
-                        number: 1,
-                        photo: Image("verstappen")
-                    ))
-                    .padding(.bottom, 5)
-                    
-                    FastestPitstop(driver: Driver(
-                        name: "Max Verstappen",
-                        team: Team(name: "Redbull Racing", country: "Austrian", logo: Image("redbull")),
-                        nationality: "Dutch",
-                        number: 1,
-                        photo: Image("verstappen")
-                    ))
-                    .padding(.bottom, 5)
-                    
-                    RaceCircuit(circuit: race.circuit)
-                }
-                .padding(.top, 2)
-                .coordinateSpace(name: "scroll")
-                .onScrollGeometryChange(for: CGFloat.self, of: { geometry in
-                    return geometry.contentOffset.y
-                }, action: { old, new in
-                    print(new)
-                    withAnimation(.spring(response: 0.6, dampingFraction: 1, blendDuration: 0)) {
-                        if (new >= 0) {
-                            scrollOffset = new
+                    ScrollView(.horizontal) {
+                        LazyHStack(spacing: 0) {
+                            ForEach(raceDetailTabs) { tab in
+                                ScrollView(showsIndicators: false) {
+                                    AnyView(tab.view())
+                                        .frame(width: size.width)
+                                        .contentShape(.rect)
+                                }
+                                .padding(.top, 2)
+                                .coordinateSpace(name: "scroll")
+                                .onScrollGeometryChange(for: CGFloat.self, of: { geometry in
+                                    return geometry.contentOffset.y
+                                }, action: { old, new in
+                                    print(new)
+                                    withAnimation(.spring(response: 0.6, dampingFraction: 1, blendDuration: 0)) {
+                                        if (new >= 0) {
+                                            scrollOffset = new
+                                        }
+                                    }
+                                })
+                                .safeAreaPadding(.bottom, 10)
+                            }
                         }
+                        .scrollTargetLayout()
+                        // rect progress
                     }
-                })
-                .safeAreaPadding(.bottom, 10)
+                    .scrollIndicators(.hidden)
+                    .scrollTargetBehavior(.paging)
+                    // scrollPosition
+                    //onCHange
+                }
             }
         }
     }

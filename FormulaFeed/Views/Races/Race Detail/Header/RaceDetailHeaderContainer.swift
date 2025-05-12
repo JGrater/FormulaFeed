@@ -21,6 +21,7 @@ struct RaceDetailHeaderContainer<Content: View>: View {
             Color(.systemBackground).ignoresSafeArea(edges: .top)
                 .frame(height: 0)
             RaceDetailHeader(scrollOffset: $scrollOffset)
+            // RaceDetailTabBar()
             content
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
