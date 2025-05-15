@@ -17,10 +17,8 @@ struct RaceDetailTab: Identifiable {
     enum Tab: String, CaseIterable {
         case info = "Info"
         case report = "Report"
-        case race = "Race"
+        case results = "Results"
         case grid = "Grid"
-        case qualifying = "Qualifying"
-        case practice = "Practice"
         case stats = "Stats"
         case news = "News"
     }

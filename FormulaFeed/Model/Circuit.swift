@@ -16,3 +16,15 @@ struct Circuit {
     let countryFlag: Image
     let location: String
 }
+
+extension Circuit {
+    static var sample: Circuit {
+        Circuit(
+            name: "Silverstone Circuit",
+            map: Image("silverstone"),
+            country: "United Kingdom",
+            countryFlag: Image("britain"),
+            location: "Northamptonshire"
+        )
+    }
+}

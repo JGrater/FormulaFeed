@@ -11,6 +11,9 @@ struct RaceDetailHeader: View {
     @Binding var scrollOffset: CGFloat
     @Environment(\.presentationMode) var presentationMode
     
+    private let maxHeaderHeight: CGFloat = 275
+    private let minHeaderHeight: CGFloat = 120
+    
     var body: some View {
         VStack(alignment: .center) {
             HStack(spacing:0) {
@@ -55,11 +58,11 @@ struct RaceDetailHeader: View {
                 )
             ], scrollOffset: $scrollOffset)
             .frame(width: 300)
-            .offset(y: max(-60, 40 - scrollOffset / 2))
+            .offset(y: max(-60, 40 - (scrollOffset / 1.5)))
             
         }
         .frame(maxWidth: .infinity, alignment: .top)
-        .frame(height: max(120, 275 - scrollOffset), alignment: .top)
+        .frame(height: max(minHeaderHeight, maxHeaderHeight - scrollOffset), alignment: .top)
         .background(Color(.systemBackground).edgesIgnoringSafeArea(.top))
 
     }
@@ -70,7 +73,7 @@ struct RaceDetailHeader: View {
         Color.blue
             .edgesIgnoringSafeArea(.all)
         VStack {
-            RaceDetailHeader(scrollOffset: .constant(0))
+            RaceDetailHeader(scrollOffset: .constant(155))
             Spacer()
         }
     }

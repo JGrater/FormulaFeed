@@ -14,3 +14,9 @@ struct Team {
     let country: String
     let logo: Image
 }
+
+extension Team {
+    static var sample: Team {
+        Team(name: "Redbull Racing", country: "Austrian", logo: Image("redbull"))
+    }
+}

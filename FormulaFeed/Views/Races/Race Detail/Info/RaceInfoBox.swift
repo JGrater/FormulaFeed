@@ -54,14 +54,8 @@ struct RaceInfoBox: View {
     RacesCard(race: Race(
         name: "British Grand Prix",
         date: "Sun 7th July, 15:00",
-        circuit: Circuit(
-            name: "Silverstone Circuit",
-            map: Image("silverstone"),
-            country: "United Kingdom",
-            countryFlag: Image("britain"),
-            location: ""
-        ),
+        circuit: Circuit.sample,
         colour: Color(red: 9 / 255, green: 32 / 255, blue: 96 / 255),
         accentColour: Color(red: 130 / 255, green: 30 / 255, blue: 55 / 255).opacity(0.5)
-    ))
+    ), driverResults: DriverResult.sample)
 }

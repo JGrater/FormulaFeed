@@ -21,19 +21,19 @@ struct FastestLap: View {
                     .padding(.top, 5)
                 
                 HStack(alignment: .top) {
-                    DriverAvatar(image: Image("verstappen"))
+                    DriverAvatar(image: driver.photo)
                         .frame(width: 75, height: 75)
                         .padding(5)
                     VStack(alignment: .leading) {
                         Text(driver.name + "  |  1:51.51")
                             .font(.headline)
                         HStack(alignment: .center) {
-                            Logo(image: Image("redbull"))
+                            Logo(image: driver.team.logo)
                                 .frame(width: 25.0, height: 20.0)
                             Text(driver.team.name + "  |")
                                 .font(.subheadline)
                                 .foregroundStyle(.secondary)
-                            Logo(image: Image("verstappenNumber"))
+                            Logo(image: Image("verstappenNumber")) // maybe
                                 .frame(width: 10, height: 10)
                                 
                         }
@@ -56,13 +56,5 @@ struct FastestLap: View {
 }
 
 #Preview {
-    FastestLap(driver:
-                Driver(
-                    name: "Max Verstappen",
-                    team: Team(name: "Redbull Racing", country: "Austrian", logo: Image("redbull")),
-                    nationality: "Dutch",
-                    number: 1,
-                    photo: Image("verstappen")
-                )
-    )
+    FastestLap(driver: Driver.sample)
 }

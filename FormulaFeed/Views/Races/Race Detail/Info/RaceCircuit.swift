@@ -27,10 +27,8 @@ struct RaceCircuit: View {
                 }
                 .padding(.leading, 5)
                 .frame(maxWidth: .infinity, alignment: .leading)
-
                 
-                
-                Logo(image: Image("silverstone"))
+                Logo(image: circuit.map)
                     .frame(maxWidth: .infinity)
             }
         }
@@ -46,11 +44,5 @@ struct RaceCircuit: View {
 }
 
 #Preview {
-    RaceCircuit(circuit: Circuit(
-        name: "Silverstone Circuit",
-        map: Image("silverstone"),
-        country: "United Kingdom",
-        countryFlag: Image("britain"),
-        location: "Northamptonshire"
-    ))
+    RaceCircuit(circuit: Circuit.sample)
 }

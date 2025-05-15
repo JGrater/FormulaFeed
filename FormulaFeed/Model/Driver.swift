@@ -16,3 +16,15 @@ struct Driver {
     let number: Int
     let photo: Image
 }
+
+extension Driver {
+    static var sample: Driver {
+        Driver(
+            name: "Max Verstappen",
+            team: Team.sample,
+            nationality: "Dutch",
+            number: 1,
+            photo: Image("verstappen")
+        )
+    }
+}

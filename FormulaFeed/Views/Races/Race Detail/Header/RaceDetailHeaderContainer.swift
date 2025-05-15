@@ -56,10 +56,8 @@ struct RaceDetailHeaderContainer<Content: View>: View {
     @Previewable @State var raceDetailTabs: [RaceDetailTab] = [
         RaceDetailTab(id: .info) { RaceDetailInfo() },
         RaceDetailTab(id: .report) { RaceDetailReport() },
-        RaceDetailTab(id: .race) { RaceDetailRace() },
+        RaceDetailTab(id: .results) { RaceDetailResults(driverResults: DriverResult.sample) },
         RaceDetailTab(id: .grid) { RaceDetailGrid() },
-        RaceDetailTab(id: .qualifying) { RaceDetailQualifying() },
-        RaceDetailTab(id: .practice) { RaceDetailPractice() },
         RaceDetailTab(id: .stats) { RaceDetailStats() },
         RaceDetailTab(id: .news) { RaceDetailNews() }
     ]

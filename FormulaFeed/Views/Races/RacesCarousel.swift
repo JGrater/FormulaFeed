@@ -17,10 +17,10 @@ struct RacesCarousel: View {
                 LazyHStack(spacing: 0) {
                     ForEach(0..<races.count, id: \.self) { index in
                         NavigationLink(destination:
-                            RaceDetail(race: races[index])
+                            RaceDetail(race: races[index], driverResults: DriverResult.sample)
                                 .navigationBarHidden(true)
                         ) {
-                            RacesCard(race: races[index])
+                            RacesCard(race: races[index], driverResults: DriverResult.sample)
                         }
                         .containerRelativeFrame(.horizontal,
                                                 count: verticalSizeClass == .regular ? 1 : 4,
@@ -55,39 +55,21 @@ extension UINavigationController {
         Race(
             name: "British Grand Prix",
             date: "Sun 7th July, 15:00",
-            circuit: Circuit(
-                name: "Silverstone Circuit",
-                map: Image("silverstone"),
-                country: "United Kingdom",
-                countryFlag: Image("britain"),
-                location: ""
-            ),
+            circuit: Circuit.sample,
             colour: Color(red: 9 / 255, green: 32 / 255, blue: 96 / 255),
             accentColour: Color(red: 130 / 255, green: 30 / 255, blue: 55 / 255).opacity(0.5)
         ),
         Race(
             name: "British Grand Prix",
             date: "Sun 7th July, 15:00",
-            circuit: Circuit(
-                name: "Silverstone Circuit",
-                map: Image("silverstone"),
-                country: "United Kingdom",
-                countryFlag: Image("britain"),
-                location: ""
-            ),
+            circuit: Circuit.sample,
             colour: Color(red: 9 / 255, green: 32 / 255, blue: 96 / 255),
             accentColour: Color(red: 130 / 255, green: 30 / 255, blue: 55 / 255).opacity(0.5)
         ),
         Race(
             name: "British Grand Prix",
             date: "Sun 7th July, 15:00",
-            circuit: Circuit(
-                name: "Silverstone Circuit",
-                map: Image("silverstone"),
-                country: "United Kingdom",
-                countryFlag: Image("britain"),
-                location: ""
-            ),
+            circuit: Circuit.sample,
             colour: Color(red: 9 / 255, green: 32 / 255, blue: 96 / 255),
             accentColour: Color(red: 130 / 255, green: 30 / 255, blue: 55 / 255).opacity(0.5)
         )

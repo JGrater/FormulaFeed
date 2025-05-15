@@ -9,14 +9,13 @@ import SwiftUI
 
 struct RaceDetail: View {
     let race: Race
+    let driverResults: [DriverResult]
     @State private var scrollOffset: CGFloat = 0
     @State private var raceDetailTabs: [RaceDetailTab] = [
         RaceDetailTab(id: .info) { RaceDetailInfo() },
         RaceDetailTab(id: .report) { RaceDetailReport() },
-        RaceDetailTab(id: .race) { RaceDetailRace() },
+        RaceDetailTab(id: .results) { RaceDetailResults(driverResults: DriverResult.sample) },
         RaceDetailTab(id: .grid) { RaceDetailGrid() },
-        RaceDetailTab(id: .qualifying) { RaceDetailQualifying() },
-        RaceDetailTab(id: .practice) { RaceDetailPractice() },
         RaceDetailTab(id: .stats) { RaceDetailStats() },
         RaceDetailTab(id: .news) { RaceDetailNews() }
     ]
@@ -24,6 +23,8 @@ struct RaceDetail: View {
     @State private var tabBarScrollState: RaceDetailTab.Tab?
     @State private var mainViewScrollState: RaceDetailTab.Tab?
     @State private var progress: CGFloat = .zero
+    
+    private let maxHeaderOffset: CGFloat = 155
     
     var body: some View {
         ZStack {
@@ -58,7 +59,9 @@ struct RaceDetail: View {
                                     print(new)
                                     withAnimation(.spring(response: 0.6, dampingFraction: 1, blendDuration: 0)) {
                                         if (new >= 0) {
-                                            scrollOffset = new
+                                            scrollOffset = min(new, maxHeaderOffset)
+                                        } else {
+                                            scrollOffset = 0
                                         }
                                     }
                                 })
@@ -91,14 +94,8 @@ struct RaceDetail: View {
     RaceDetail(race: Race(
         name: "British Grand Prix",
         date: "Sun 7th July, 15:00",
-        circuit: Circuit(
-            name: "Silverstone Circuit",
-            map: Image("silverstone"),
-            country: "United Kingdom",
-            countryFlag: Image("britain"),
-            location: "Northamptonshire"
-        ),
+        circuit: Circuit.sample,
         colour: Color(red: 9 / 255, green: 32 / 255, blue: 96 / 255),
         accentColour: Color(red: 130 / 255, green: 30 / 255, blue: 55 / 255).opacity(0.5)
-    ))
+    ), driverResults: DriverResult.sample)
 }

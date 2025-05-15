@@ -54,13 +54,7 @@ struct PodiumProfile: View {
 
 #Preview {
     Podium(podiumDrivers: [
-        Driver(
-            name: "Max Verstappen",
-            team: Team(name: "Redbull Racing", country: "Austrian", logo: Image("redbull")),
-            nationality: "Dutch",
-            number: 1,
-            photo: Image("verstappen")
-        ),
+        Driver.sample,
         Driver(
             name: "Lewis Hamilton",
             team: Team(name: "Mercedes",country: "Germany", logo: Image("mercedes")),

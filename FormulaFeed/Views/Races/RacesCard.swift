@@ -8,110 +8,8 @@
 import SwiftUI
 
 struct RacesCard: View {
-        
     let race: Race
-    
-    let driverResults: [DriverResult] = [
-            DriverResult(
-                position: 1, driver: Driver(
-                    name: "Lewis Hamilton",
-                    team: Team(name: "Mercedes", country: "German", logo: Image("mercedes")),
-                    nationality: "British",
-                    number: 44,
-                    photo: Image("hamilton")
-                ), lapTime: "1:32.567"
-            ),
-            DriverResult(
-                position: 2, driver: Driver(
-                    name: "Max Verstappen",
-                    team: Team(name: "Redbull Racing", country: "Austrian", logo: Image("redbull")),
-                    nationality: "Dutch",
-                    number: 1,
-                    photo: Image("verstappen")
-                ), lapTime: "1:32.321"
-            ),
-            DriverResult(
-                position: 3, driver: Driver(
-                    name: "Lando Norris",
-                    team: Team(name: "Mclaren", country: "British", logo: Image("redbull")),
-                    nationality: "Dutch",
-                    number: 15,
-                    photo: Image("verstappen")
-                ), lapTime: "1:33.120"
-            ),
-            DriverResult(
-                position: 4, driver: Driver(
-                    name: "Oscar Piastri",
-                    team: Team(name: "Mclaren", country: "Austrian", logo: Image("redbull")),
-                    nationality: "Australian",
-                    number: 69,
-                    photo: Image("verstappen")
-                ), lapTime: "1:33.128"
-            ),
-            DriverResult(
-                position: 5, driver: Driver(
-                    name: "Carlos Sainz Jr.",
-                    team: Team(name: "Ferrari", country: "Italian", logo: Image("ferrari")),
-                    nationality: "Spanish",
-                    number: 14,
-                    photo: Image("leclerc")
-                ), lapTime: "1:33.128"
-            ),
-            DriverResult(
-                position: 5, driver: Driver(
-                    name: "Carlos Sainz Jr.",
-                    team: Team(name: "Ferrari", country: "Italian", logo: Image("ferrari")),
-                    nationality: "Spanish",
-                    number: 14,
-                    photo: Image("leclerc")
-                ), lapTime: "1:33.128"
-            ),
-            DriverResult(
-                position: 5, driver: Driver(
-                    name: "Carlos Sainz Jr.",
-                    team: Team(name: "Ferrari", country: "Italian", logo: Image("ferrari")),
-                    nationality: "Spanish",
-                    number: 14,
-                    photo: Image("leclerc")
-                ), lapTime: "1:33.128"
-            ),
-            DriverResult(
-                position: 5, driver: Driver(
-                    name: "Carlos Sainz Jr.",
-                    team: Team(name: "Ferrari", country: "Italian", logo: Image("ferrari")),
-                    nationality: "Spanish",
-                    number: 14,
-                    photo: Image("leclerc")
-                ), lapTime: "1:33.128"
-            ),
-            DriverResult(
-                position: 5, driver: Driver(
-                    name: "Carlos Sainz Jr.",
-                    team: Team(name: "Ferrari", country: "Italian", logo: Image("ferrari")),
-                    nationality: "Spanish",
-                    number: 14,
-                    photo: Image("leclerc")
-                ), lapTime: "1:33.128"
-            ),
-            DriverResult(
-                position: 5, driver: Driver(
-                    name: "Carlos Sainz Jr.",
-                    team: Team(name: "Ferrari", country: "Italian", logo: Image("ferrari")),
-                    nationality: "Spanish",
-                    number: 14,
-                    photo: Image("leclerc")
-                ), lapTime: "1:33.128"
-            ),
-            DriverResult(
-                position: 5, driver: Driver(
-                    name: "Carlos Sainz Jr.",
-                    team: Team(name: "Ferrari", country: "Italian", logo: Image("ferrari")),
-                    nationality: "Spanish",
-                    number: 14,
-                    photo: Image("leclerc")
-                ), lapTime: "1:33.128"
-            )
-        ]
+    let driverResults: [DriverResult]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -175,17 +73,13 @@ struct RacesCard: View {
 }
 
 #Preview {
-    RacesCard(race: Race(
-        name: "British Grand Prix",
-        date: "Sun 7th July, 15:00",
-        circuit: Circuit(
-            name: "Silverstone Circuit",
-            map: Image("silverstone"),
-            country: "United Kingdom",
-            countryFlag: Image("britain"),
-            location: ""
-        ),
-        colour: Color(red: 9 / 255, green: 32 / 255, blue: 96 / 255),
-        accentColour: Color(red: 130 / 255, green: 30 / 255, blue: 55 / 255).opacity(0.5)
-    ))
+    RacesCard(
+        race: Race(
+            name: "British Grand Prix",
+            date: "Sun 7th July, 15:00",
+            circuit: Circuit.sample,
+            colour: Color(red: 9 / 255, green: 32 / 255, blue: 96 / 255),
+            accentColour: Color(red: 130 / 255, green: 30 / 255, blue: 55 / 255).opacity(0.5)
+        ), driverResults: DriverResult.sample
+    )
 }
