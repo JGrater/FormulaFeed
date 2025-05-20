@@ -9,46 +9,41 @@ import SwiftUI
 
 struct Podium: View {
     let podiumDrivers: [Driver]
-    @Binding var scrollOffset: CGFloat
+    var progress: Double
     
     var body: some View {
         HStack {
-            PodiumProfile(scrollOffset: $scrollOffset, position: 2, driver: podiumDrivers[1])
+            PodiumProfile(progress: progress, position: 2, driver: podiumDrivers[1])
 
-            PodiumProfile(scrollOffset: $scrollOffset, position: 1, driver: podiumDrivers[0])
+            PodiumProfile(progress: progress, position: 1, driver: podiumDrivers[0])
             .offset(y: -50)
             
-            PodiumProfile(scrollOffset: $scrollOffset, position: 3, driver: podiumDrivers[2])
+            PodiumProfile(progress: progress, position: 3, driver: podiumDrivers[2])
         }
-        .scaleEffect(max(0.5, min(0.99, 1.0 - scrollOffset / 300.0)))
-        .offset(y: max(0, -50 - scrollOffset / 2))
-        .frame(maxWidth: .infinity, alignment: .center)
+        .scaleEffect(1 - (progress * 0.5))
+        .offset(y: 50 * progress)
     }
 }
 
-struct PodiumProfile: View {
-    @Binding var scrollOffset: CGFloat
-    let position: Int
-    let driver: Driver
-    
-    var body: some View {
-        VStack {
-            Text(position == 1 ? "1st" : (position == 2 ? "2nd" : "3rd"))
-                .bold()
-                //.opacity(max(0, 1.0 - scrollOffset / 100.0))
-            DriverAvatar(image: driver.photo)
-                .frame(width: 75, height: 75)
-                .padding(5)
-            Divider().opacity(max(0, 1.0 - scrollOffset / 100.0))
-            HStack(alignment: .center) {
-                Logo(image: driver.team.logo)
-                    .frame(width: 15.0, height: 15.0)
-                Text(driver.name.split(separator: " ").last ?? "")
-                    .font(.caption)
+@ViewBuilder
+func PodiumProfile(progress: Double, position: Int, driver: Driver) -> some View {
+    VStack {
+        Text(position == 1 ? "1st" : (position == 2 ? "2nd" : "3rd"))
+            .bold()
+            .opacity(1 - progress)
+        DriverAvatar(image: driver.photo)
+            .frame(width: 75, height: 75)
+            .padding(5)
+        Divider()
+            .opacity(1 - progress)
+        HStack(alignment: .center) {
+            Logo(image: driver.team.logo)
+                .frame(width: 15.0, height: 15.0)
+            Text(driver.name.split(separator: " ").last ?? "")
+                .font(.caption)
 
-            }
-            .opacity(max(0, 1.0 - scrollOffset / 100.0))
         }
+        .opacity(1 - progress)
     }
 }
 
@@ -69,5 +64,5 @@ struct PodiumProfile: View {
             number: 16,
             photo: Image("leclerc")
         )
-    ], scrollOffset: .constant(-10))
+    ], progress: 0.0)
 }

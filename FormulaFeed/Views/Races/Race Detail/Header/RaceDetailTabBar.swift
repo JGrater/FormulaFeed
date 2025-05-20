@@ -15,9 +15,11 @@ struct RaceDetailTabBar: View {
     @Binding var progress: CGFloat
     
     var body: some View {
+        // Scrollable tab bar
         ScrollView(.horizontal) {
             HStack(spacing: 20) {
                 ForEach($tabs) { $tab in
+                    // Change tab by pressing name and sliding through
                     Button(action: {
                         withAnimation(.snappy) {
                             selectedTab = tab.id
@@ -25,6 +27,7 @@ struct RaceDetailTabBar: View {
                             mainViewScrollState = tab.id
                         }
                     }) {
+                        // Tab Name
                         Text(tab.id.rawValue)
                             .padding(.vertical, 12)
                             .foregroundStyle(selectedTab == tab.id ? Color.primary : .gray) // if not selected, grey out
@@ -55,6 +58,7 @@ struct RaceDetailTabBar: View {
                 let indicatorWidth = progress.interpolate(inputRange: inputRange, outputRange: outputRange)
                 let indicatorPosition = progress.interpolate(inputRange: inputRange, outputRange: outputPositionRange)
                 
+                // Underlining bar, change widths to match length of word, offset to position under tab name
                 Rectangle()
                     .fill(.primary)
                     .frame(width: indicatorWidth, height: 1.5)

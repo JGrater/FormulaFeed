@@ -19,6 +19,7 @@ struct RacesCarousel: View {
                         NavigationLink(destination:
                             RaceDetail(race: races[index], driverResults: DriverResult.sample)
                                 .navigationBarHidden(true)
+                                .ignoresSafeArea(.all, edges: .top)
                         ) {
                             RacesCard(race: races[index], driverResults: DriverResult.sample)
                         }
